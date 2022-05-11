@@ -3,4 +3,6 @@
     <string name="splash_image_desc">Splash Image</string>
     <string name="dont_show_again">다시 보지 않기</string>
     <string name="close">닫기</string>
+    <string name="server_error_string">서버에 연결할 수 없습니다.</string>
+    <string name="json_parsing_error_string">JSON 파일을 파싱하는데 실패했습니다.</string>
 </resources>

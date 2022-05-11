@@ -1,10 +1,10 @@
 package com.codesquad.kotlin_starbucks.splash
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.codesquad.kotlin_starbucks.R
 
 class SplashFragment : Fragment() {
