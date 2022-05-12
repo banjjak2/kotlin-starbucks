@@ -1,108 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".splash.SplashFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/splash_image"
+    <data>
+
+        <variable
+            name="eventDetail"
+            type="com.codesquad.kotlin_starbucks.splash.EventDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="24dp"
-        android:contentDescription="@string/splash_image_desc"
-        android:scaleType="fitCenter"
-        android:src="@drawable/event_bg"
-        app:layout_constraintBottom_toTopOf="@id/btn_dont_show_again"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        tools:context=".splash.SplashFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_dont_show_again"
-        style="@style/DefaultTextStyle.Small.Bold"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/round_white_button"
-        android:text="@string/dont_show_again"
-        android:textColor="@color/starbucks_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_just_close"
-        app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/splash_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/splash_image_desc"
+            android:scaleType="fitCenter"
+            android:src="@drawable/event_bg"
+            app:layout_constraintBottom_toTopOf="@id/btn_dont_show_again"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_just_close"
-        style="@style/DefaultTextStyle.Small.Bold"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/round_green_button"
-        android:text="@string/close"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_dont_show_again" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dont_show_again"
+            style="@style/DefaultTextStyle.Small.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/round_white_button"
+            android:text="@string/dont_show_again"
+            android:textColor="@color/starbucks_green"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_just_close"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_just_close"
+            style="@style/DefaultTextStyle.Small.Bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/round_green_button"
+            android:text="@string/close"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_dont_show_again" />
 
 
-    <TextView
-        android:id="@+id/tv_title"
-        style="@style/DefaultTextStyle.Bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="168dp"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="스타벅스트" />
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/DefaultTextStyle.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="35dp"
+            android:text="@{eventDetail.title}"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="스타벅스트" />
 
-    <TextView
-        android:id="@+id/tv_range"
-        style="@style/DefaultTextStyle.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="222dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="2021년 10월 11일 ~ 10월 22일" />
+        <TextView
+            android:id="@+id/tv_range"
+            style="@style/DefaultTextStyle.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="203dp"
+            android:text="@{eventDetail.range}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2021년 10월 11일 ~ 10월 22일" />
 
-    <TextView
-        android:id="@+id/tv_target"
-        style="@style/DefaultTextStyle.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="245dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="스타벅스 리워드 회원" />
+        <TextView
+            android:id="@+id/tv_target"
+            style="@style/DefaultTextStyle.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="2dp"
+            android:text="@{eventDetail.target}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_range"
+            tools:text="스타벅스 리워드 회원" />
 
-    <TextView
-        android:id="@+id/tv_description"
-        style="@style/DefaultTextStyle.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="267dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="기간 내 오후 2시~6시 \n등록된 카드로 주문시 영수증당 별추가 증정" />
+        <TextView
+            android:id="@+id/tv_description"
+            style="@style/DefaultTextStyle.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="32dp"
+            android:text="@{eventDetail.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_target"
+            tools:text="기간 내 오후 2시~6시 \n등록된 카드로 주문시 영수증당 별추가 증정" />
 
-    <TextView
-        android:id="@+id/tv_event_products"
-        style="@style/DefaultTextStyle.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="322dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="스타벅스트 딜리버리 음료" />
+        <TextView
+            android:id="@+id/tv_event_products"
+            style="@style/DefaultTextStyle.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="115dp"
+            android:layout_marginTop="10dp"
+            android:text="@{eventDetail.eventProducts}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
+            tools:text="스타벅스트 딜리버리 음료" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
