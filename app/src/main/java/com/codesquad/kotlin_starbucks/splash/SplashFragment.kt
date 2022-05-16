@@ -1,10 +1,12 @@
 package com.codesquad.kotlin_starbucks.splash
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.codesquad.kotlin_starbucks.R
@@ -41,6 +43,21 @@ class SplashFragment : DialogFragment() {
 
     private fun registerButtonsClickListener() {
         binding.btnJustClose.setOnClickListener {
+            dismiss()
+        }
+
+        binding.btnDontShowAgain.setOnClickListener {
+            val pref = requireActivity().getSharedPreferences(
+                getString(R.string.event_pref_name),
+                Context.MODE_PRIVATE
+            )
+
+            pref.edit {
+                putBoolean(
+                    getString(R.string.event_open_key),
+                    false
+                )
+            }
             dismiss()
         }
     }
