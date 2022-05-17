@@ -8,4 +8,5 @@
     <string name="event_pref_name">eventShowCheck</string>
     <string name="event_open_key">eventOpenKey</string>
     <string name="event_saved_day_key">savedDayKey</string>
+    <string name="whats_new">What\'s New</string>
 </resources>
