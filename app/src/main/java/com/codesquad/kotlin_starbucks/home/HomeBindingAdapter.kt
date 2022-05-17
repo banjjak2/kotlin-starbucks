@@ -21,3 +21,13 @@ fun setDisplayName(view: TextView, name: String?) {
         view.text = convertText
     }
 }
+
+@BindingAdapter("set_image_from_url")
+fun setMainEventImageFromUrl(imageView: ImageView, mainEvent: MainEvent?) {
+    mainEvent?.let {
+        val url = it.imageUploadPath + it.mobileThumbnail
+        Glide.with(imageView.context)
+            .load(url)
+            .into(imageView)
+    }
+}
