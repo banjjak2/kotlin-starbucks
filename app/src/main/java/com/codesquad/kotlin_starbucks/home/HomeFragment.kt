@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.codesquad.kotlin_starbucks.R
+import com.codesquad.kotlin_starbucks.ViewModelFactory
 import com.codesquad.kotlin_starbucks.databinding.FragmentHomeBinding
 import com.codesquad.kotlin_starbucks.splash.SplashFragment
 import java.text.SimpleDateFormat
@@ -16,6 +18,8 @@ import java.util.*
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
+    private val viewModel by viewModels<HomeViewModel> { ViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +39,12 @@ class HomeFragment : Fragment() {
                 "SplashEvent"
             )
         }
+
+        viewModel.homeData.observe(viewLifecycleOwner) {
+            binding.homedata = it
+        }
+
+        viewModel.getHomeData()
     }
 
     private fun checkShowEventScreen(): Boolean {
