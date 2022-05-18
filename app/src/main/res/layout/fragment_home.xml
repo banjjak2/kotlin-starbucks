@@ -7,7 +7,7 @@
 
         <variable
             name="homedata"
-            type="com.codesquad.kotlin_starbucks.network.home.HomeData" />
+            type="com.codesquad.kotlin_starbucks.home.data.HomeData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,10 +60,9 @@
                     android:id="@+id/recommend_list"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal"
-                    android:scrollbars="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -74,13 +73,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="12dp"
                     android:adjustViewBounds="true"
                     android:contentDescription="@string/main_event_image"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recommend_list"
-                    custom:set_image_from_url="@{homedata.mainEvent}" />
+                    custom:set_image_from_url="@{homedata.mainEventImagePath}" />
 
                 <TextView
                     android:id="@+id/see_all"
@@ -98,10 +98,9 @@
                     android:id="@+id/events_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal"
-                    android:scrollbars="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/see_all" />
@@ -129,12 +128,13 @@
                     tools:text="주중 오후 4시 기준" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recommend_current_menu"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:orientation="horizontal"
-                    android:scrollbars="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

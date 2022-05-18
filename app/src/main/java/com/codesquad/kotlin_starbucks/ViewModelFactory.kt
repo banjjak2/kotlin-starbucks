@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.codesquad.kotlin_starbucks.home.HomeRepository
 import com.codesquad.kotlin_starbucks.home.HomeViewModel
 import com.codesquad.kotlin_starbucks.network.home.HomeService
+import com.codesquad.kotlin_starbucks.network.starbucks.StarbucksService
 import com.codesquad.kotlin_starbucks.splash.SplashViewModel
 import java.lang.IllegalArgumentException
 
@@ -17,7 +18,10 @@ class ViewModelFactory : ViewModelProvider.Factory {
             }
             isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(
-                    HomeRepository(HomeService.create())
+                    HomeRepository(
+                        HomeService.create(),
+                        StarbucksService.create()
+                    )
                 )
             }
 

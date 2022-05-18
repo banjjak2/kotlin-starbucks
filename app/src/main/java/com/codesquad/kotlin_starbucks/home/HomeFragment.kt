@@ -40,8 +40,25 @@ class HomeFragment : Fragment() {
             )
         }
 
+        val itemDecoration = ItemDecoration(32)
+
+        val recommendListAdapter = ItemListAdapter()
+        binding.recommendList.adapter = recommendListAdapter
+        binding.recommendList.addItemDecoration(itemDecoration)
+
+        val recommendCurrentAdapter = ItemListAdapter()
+        binding.recommendCurrentMenu.adapter = recommendCurrentAdapter
+        binding.recommendCurrentMenu.addItemDecoration(itemDecoration)
+
+        val homeEventsAdapter = ItemListAdapter()
+        binding.eventsList.adapter = homeEventsAdapter
+        binding.eventsList.addItemDecoration(itemDecoration)
+
         viewModel.homeData.observe(viewLifecycleOwner) {
             binding.homedata = it
+            recommendListAdapter.submitList(it.yourRecommend)
+            recommendCurrentAdapter.submitList(it.nowRecommend)
+            homeEventsAdapter.submitList(it.homeEvents)
         }
 
         viewModel.getHomeData()

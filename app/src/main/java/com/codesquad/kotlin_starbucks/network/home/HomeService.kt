@@ -34,5 +34,5 @@ interface HomeService {
     }
 
     @GET("starbuckst")
-    suspend fun getHomeData(): HomeData
+    suspend fun getHomeDataResponse(): HomeDataResponse
 }

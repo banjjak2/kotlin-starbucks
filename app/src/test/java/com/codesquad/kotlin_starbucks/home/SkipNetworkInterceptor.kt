@@ -1,14 +1,10 @@
 package com.codesquad.kotlin_starbucks.home
 
-import com.codesquad.kotlin_starbucks.network.home.HomeData
-import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.ResponseBody.Companion.toResponseBody
-import org.json.JSONObject
 
 class SkipNetworkInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {

@@ -14,4 +14,5 @@
     <string name="see_all">See all</string>
     <string name="current_time_recommend_menu">이 시간대 인기 메뉴</string>
     <string name="main_event_image">Main Event Image</string>
+    <string name="event_image">Event Image</string>
 </resources>

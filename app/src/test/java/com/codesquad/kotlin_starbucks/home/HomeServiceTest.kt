@@ -2,7 +2,7 @@ package com.codesquad.kotlin_starbucks.home
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.codesquad.kotlin_starbucks.MainDispatcherRule
-import com.codesquad.kotlin_starbucks.network.home.HomeData
+import com.codesquad.kotlin_starbucks.network.home.HomeDataResponse
 import com.codesquad.kotlin_starbucks.network.home.HomeService
 import com.google.common.truth.Truth
 import com.squareup.moshi.JsonAdapter
@@ -43,11 +43,11 @@ class HomeServiceTest {
             .add(KotlinJsonAdapterFactory())
             .build()
 
-        val jsonAdapter: JsonAdapter<HomeData> = moshi.adapter(HomeData::class.java)
+        val jsonAdapter: JsonAdapter<HomeDataResponse> = moshi.adapter(HomeDataResponse::class.java)
         val expectedData = jsonAdapter.fromJson(expectedJson)
 
         val network = HomeService.create(SkipNetworkInterceptor())
-        val result = network.getHomeData()
+        val result = network.getHomeDataResponse()
         Truth.assertThat(result).isEqualTo(expectedData)
     }
 }

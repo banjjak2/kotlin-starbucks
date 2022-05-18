@@ -23,11 +23,20 @@ fun setDisplayName(view: TextView, name: String?) {
 }
 
 @BindingAdapter("set_image_from_url")
-fun setMainEventImageFromUrl(imageView: ImageView, mainEvent: MainEvent?) {
-    mainEvent?.let {
-        val url = it.imageUploadPath + it.mobileThumbnail
-        Glide.with(imageView.context)
-            .load(url)
+fun setImageFromUrl(imageView: ImageView, url: String?) {
+    url?.let {
+        Glide.with(imageView)
+            .load(it)
+            .into(imageView)
+    }
+}
+
+@BindingAdapter("set_your_recommend_image_from_url")
+fun setYourRecommendImageFromUrl(imageView: ImageView, url: String?) {
+    url?.let {
+        Glide.with(imageView)
+            .load(it)
+            .circleCrop()
             .into(imageView)
     }
 }
