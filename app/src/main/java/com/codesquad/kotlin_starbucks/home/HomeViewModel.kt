@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codesquad.kotlin_starbucks.home.data.HomeData
 import com.codesquad.kotlin_starbucks.home.data.HomeItem
+import com.codesquad.kotlin_starbucks.home.data.remote.HomeRepository
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val homeRepository: HomeRepository) : ViewModel() {
