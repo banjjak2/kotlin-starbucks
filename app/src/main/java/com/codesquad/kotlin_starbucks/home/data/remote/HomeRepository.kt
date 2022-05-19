@@ -2,6 +2,7 @@ package com.codesquad.kotlin_starbucks.home.data.remote
 
 import com.codesquad.kotlin_starbucks.home.data.HomeItem
 import com.codesquad.kotlin_starbucks.home.data.RemoteRepository
+import com.codesquad.kotlin_starbucks.home.data.WhatsNew
 import com.codesquad.kotlin_starbucks.network.home.HomeDataResponse
 import com.codesquad.kotlin_starbucks.network.home.HomeService
 import com.codesquad.kotlin_starbucks.network.starbucks.StarbucksService
@@ -41,6 +42,23 @@ class HomeRepository(
                 HomeItem.HomeEvent(
                     it.title,
                     it.imageUploadPath + "/upload/promotion/" + it.mobileThumbnail
+                )
+            )
+        }
+
+        return result
+    }
+
+    override suspend fun getWhatsNews(): List<WhatsNew> {
+        val whatsNews = starbucksNetwork.getWhatsNewList().list
+        val result = mutableListOf<WhatsNew>()
+
+        whatsNews.forEach {
+            result.add(
+                WhatsNew(
+                    it.title,
+                    it.newsDate,
+                    "https://image.istarbucks.co.kr/upload/news/" + it.mobileThumbnail
                 )
             )
         }

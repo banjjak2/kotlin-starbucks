@@ -13,4 +13,6 @@ interface RemoteRepository {
     ): HomeItem.RecommendItem?
 
     suspend fun getHomeEvents(): List<HomeItem.HomeEvent>
+
+    suspend fun getWhatsNews(): List<WhatsNew>
 }

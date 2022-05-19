@@ -1,5 +1,6 @@
 package com.codesquad.kotlin_starbucks.home
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.codesquad.kotlin_starbucks.home.data.HomeItem
@@ -61,5 +62,12 @@ class HomeViewModel(private val homeRepository: HomeRepository) : ViewModel() {
         }
 
         return result
+    }
+
+    fun getWhatsNewList() {
+        viewModelScope.launch {
+            val result = homeRepository.getWhatsNews()
+            Log.d("AAAA", result.toString())
+        }
     }
 }

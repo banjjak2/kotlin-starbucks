@@ -3,11 +3,13 @@ package com.codesquad.kotlin_starbucks.network.starbucks
 import com.codesquad.kotlin_starbucks.network.starbucks.detail.ProductDetail
 import com.codesquad.kotlin_starbucks.network.starbucks.detail.ProductDetailImage
 import com.codesquad.kotlin_starbucks.network.starbucks.events.EventsResponse
+import com.codesquad.kotlin_starbucks.network.starbucks.whatsnew.WhatsNewResponse
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -45,4 +47,7 @@ interface StarbucksService {
 
     @POST("whats_new/getIngList.do")
     suspend fun getEventsList(@Query("MENU_CD") menuCd: String): EventsResponse
+
+    @GET("whats_new/newsListAjax.do")
+    suspend fun getWhatsNewList(): WhatsNewResponse
 }
