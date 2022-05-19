@@ -1,33 +1,49 @@
 package com.codesquad.kotlin_starbucks.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codesquad.kotlin_starbucks.home.data.HomeData
 import com.codesquad.kotlin_starbucks.home.data.HomeItem
 import com.codesquad.kotlin_starbucks.home.data.remote.HomeRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val homeRepository: HomeRepository) : ViewModel() {
 
-    private var _homeData = MutableLiveData<HomeData>()
-    val homeData: LiveData<HomeData> = _homeData
+    private var _displayName = MutableStateFlow("")
+    val displayName: StateFlow<String> = _displayName
+
+    private var _mainEventImagePath = MutableStateFlow("")
+    val mainEventImagePath: StateFlow<String> = _mainEventImagePath
+
+    private var _homeEvents = MutableStateFlow<List<HomeItem.HomeEvent>>(listOf())
+    val homeEvents: StateFlow<List<HomeItem.HomeEvent>> = _homeEvents
+
+    private var _yourRecommendItems = MutableStateFlow<List<HomeItem.RecommendItem>>(listOf())
+    val yourRecommendItems: StateFlow<List<HomeItem.RecommendItem>> = _yourRecommendItems
+
+    private var _nowRecommendItems = MutableStateFlow<List<HomeItem.RecommendItem>>(listOf())
+    val nowRecommendItems: StateFlow<List<HomeItem.RecommendItem>> = _nowRecommendItems
 
     fun getHomeData() {
         viewModelScope.launch {
-            val homeDataResponse = homeRepository.getHomeDataResponse()
-            val result = with(homeDataResponse) {
-                HomeData(
-                    displayName,
-                    mainEvent.imageUploadPath + mainEvent.mobileThumbnail,
-                    homeRepository.getHomeEvents(),
-                    getRecommendItems(false, yourRecommend.products),
-                    getRecommendItems(true, nowRecommend.products)
-                )
-            }
+            with(homeRepository.getHomeDataResponse()) {
+                _displayName.value = displayName
+                _mainEventImagePath.value =
+                    mainEvent.imageUploadPath + mainEvent.mobileThumbnail
 
-            _homeData.value = result
+                launch {
+                    _yourRecommendItems.value = getRecommendItems(false, yourRecommend.products)
+                }
+
+                launch {
+                    _nowRecommendItems.value = getRecommendItems(true, nowRecommend.products)
+                }
+
+                launch {
+                    _homeEvents.value = homeRepository.getHomeEvents()
+                }
+            }
         }
     }
 

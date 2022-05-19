@@ -8,10 +8,14 @@ import android.view.ViewGroup
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.codesquad.kotlin_starbucks.R
 import com.codesquad.kotlin_starbucks.ViewModelFactory
 import com.codesquad.kotlin_starbucks.databinding.FragmentHomeBinding
 import com.codesquad.kotlin_starbucks.splash.SplashFragment
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -54,11 +58,36 @@ class HomeFragment : Fragment() {
         binding.eventsList.adapter = homeEventsAdapter
         binding.eventsList.addItemDecoration(itemDecoration)
 
-        viewModel.homeData.observe(viewLifecycleOwner) {
-            binding.homedata = it
-            recommendListAdapter.submitList(it.yourRecommend)
-            recommendCurrentAdapter.submitList(it.nowRecommend)
-            homeEventsAdapter.submitList(it.homeEvents)
+        viewLifecycleOwner.lifecycleScope.launch {
+            launch {
+                viewModel.displayName.collect {
+                    binding.displayname = it
+                }
+            }
+
+            launch {
+                viewModel.mainEventImagePath.collect {
+                    binding.mainEventImageUrl = it
+                }
+            }
+
+            launch {
+                viewModel.homeEvents.collect {
+                    homeEventsAdapter.submitList(it)
+                }
+            }
+
+            launch {
+                viewModel.yourRecommendItems.collect {
+                    recommendListAdapter.submitList(it)
+                }
+            }
+
+            launch {
+                viewModel.nowRecommendItems.collect {
+                    recommendCurrentAdapter.submitList(it)
+                }
+            }
         }
 
         viewModel.getHomeData()

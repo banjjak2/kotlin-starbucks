@@ -6,8 +6,13 @@
     <data>
 
         <variable
-            name="homedata"
-            type="com.codesquad.kotlin_starbucks.home.data.HomeData" />
+            name="displayname"
+            type="String" />
+
+        <variable
+            name="mainEventImageUrl"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +58,7 @@
                     android:layout_marginTop="12dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    custom:display_name="@{homedata.displayName}"
+                    custom:display_name="@{displayname}"
                     tools:text="얼음JK 님을 위한 추천 메뉴" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -80,7 +85,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recommend_list"
-                    custom:set_image_from_url="@{homedata.mainEventImagePath}" />
+                    custom:set_image_from_url="@{mainEventImageUrl}" />
 
                 <TextView
                     android:id="@+id/see_all"
