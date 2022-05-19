@@ -1,11 +1,11 @@
-package com.codesquad.kotlin_starbucks.splash
+package com.codesquad.kotlin_starbucks.adapters
 
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY
 import androidx.databinding.BindingAdapter
 
-@BindingAdapter("markdown_text")
+@BindingAdapter("markdownText")
 fun setMarkdownText(textView: TextView, text: String?) {
     text?.let {
         val boldRegex = "(\\*\\*|__)(.*?)\\1"

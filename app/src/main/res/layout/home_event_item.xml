@@ -7,7 +7,7 @@
 
         <variable
             name="event"
-            type="com.codesquad.kotlin_starbucks.home.data.HomeItem.HomeEvent" />
+            type="com.codesquad.kotlin_starbucks.home.data.HomeEventItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/event_image"
-            set_image_from_url="@{event.imagePath}"
+            imageFromUrl="@{event.imageUrl}"
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:contentDescription="@string/event_image"

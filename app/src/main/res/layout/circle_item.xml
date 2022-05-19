@@ -9,8 +9,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="recommendItem"
-            type="com.codesquad.kotlin_starbucks.home.data.HomeItem.RecommendItem" />
+            name="menuItem"
+            type="com.codesquad.kotlin_starbucks.data.MenuItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,11 +21,11 @@
             android:id="@+id/product_rank"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{String.valueOf(recommendItem.idx)}"
+            android:text="@{String.valueOf(menuItem.rank)}"
             tools:text="3"
             android:textColor="@color/starbucks_green"
             style="@style/DefaultTextStyle.Large"
-            android:visibility="@{recommendItem.visibleRank? View.VISIBLE : View.GONE}"
+            android:visibility="@{menuItem.visibleRank? View.VISIBLE : View.GONE}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/product_image" />
 
@@ -37,14 +37,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            custom:set_your_recommend_image_from_url="@{recommendItem.imagePath}" />
+            custom:circleCropImageFromUrl="@{menuItem.imageUrl}" />
 
         <TextView
             android:id="@+id/product_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="3"
-            android:text="@{recommendItem.title}"
+            android:text="@{menuItem.title}"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/product_rank"

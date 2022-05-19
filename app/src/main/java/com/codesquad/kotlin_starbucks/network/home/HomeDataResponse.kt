@@ -13,8 +13,23 @@ data class HomeDataResponse(
     val mainEvent: MainEvent,
 
     @Json(name = "now-recommand")
-    val nowRecommend: NowRecommend,
+    val nowRecommendIndexList: MenuIndexList,
 
     @Json(name = "your-recommand")
-    val yourRecommend: YourRecommend
+    val yourRecommendIndexList: MenuIndexList
+)
+
+@JsonClass(generateAdapter = true)
+data class MainEvent(
+
+    @Json(name = "img_UPLOAD_PATH")
+    val imageUploadPath: String,
+
+    @Json(name = "mob_THUM")
+    val mobileThumbnail: String
+)
+
+@JsonClass(generateAdapter = true)
+data class MenuIndexList(
+    val products: List<String>
 )

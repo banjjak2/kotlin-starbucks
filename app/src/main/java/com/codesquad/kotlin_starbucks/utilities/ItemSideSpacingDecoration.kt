@@ -1,10 +1,10 @@
-package com.codesquad.kotlin_starbucks.home
+package com.codesquad.kotlin_starbucks.utilities
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class ItemDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
+class ItemSideSpacingDecoration(private val spacing: Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
         outRect: Rect,

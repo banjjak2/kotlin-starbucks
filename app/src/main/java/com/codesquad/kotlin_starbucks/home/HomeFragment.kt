@@ -13,8 +13,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.codesquad.kotlin_starbucks.R
 import com.codesquad.kotlin_starbucks.ViewModelFactory
+import com.codesquad.kotlin_starbucks.adapters.HomeEventsAdapter
+import com.codesquad.kotlin_starbucks.adapters.HomeMenuAdapter
 import com.codesquad.kotlin_starbucks.databinding.FragmentHomeBinding
 import com.codesquad.kotlin_starbucks.splash.SplashFragment
+import com.codesquad.kotlin_starbucks.utilities.ItemSideSpacingDecoration
+import com.codesquad.kotlin_starbucks.utilities.repeatOnStarted
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,6 +28,10 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
 
     private val viewModel by viewModels<HomeViewModel> { ViewModelFactory() }
+
+    private val yourRecommendAdapter = HomeMenuAdapter()
+    private val nowRecommendAdapter = HomeMenuAdapter()
+    private val homeEventsAdapter = HomeEventsAdapter(true)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,53 +52,54 @@ class HomeFragment : Fragment() {
             )
         }
 
-        val itemDecoration = ItemDecoration(32)
+        setRecyclerViewAdapter()
+        subscribeUiState()
+        viewModel.getHomeData()
+    }
 
-        val recommendListAdapter = ItemListAdapter()
-        binding.recommendList.adapter = recommendListAdapter
+    private fun setRecyclerViewAdapter() {
+        val itemDecoration = ItemSideSpacingDecoration(32)
+
+        binding.recommendList.adapter = yourRecommendAdapter
         binding.recommendList.addItemDecoration(itemDecoration)
 
-        val recommendCurrentAdapter = ItemListAdapter()
-        binding.recommendCurrentMenu.adapter = recommendCurrentAdapter
+        binding.recommendCurrentMenu.adapter = nowRecommendAdapter
         binding.recommendCurrentMenu.addItemDecoration(itemDecoration)
 
-        val homeEventsAdapter = ItemListAdapter()
         binding.eventsList.adapter = homeEventsAdapter
         binding.eventsList.addItemDecoration(itemDecoration)
+    }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            launch {
-                viewModel.displayName.collect {
-                    binding.displayname = it
-                }
-            }
-
-            launch {
-                viewModel.mainEventImagePath.collect {
-                    binding.mainEventImageUrl = it
-                }
-            }
-
-            launch {
-                viewModel.homeEvents.collect {
-                    homeEventsAdapter.submitList(it)
-                }
-            }
-
-            launch {
-                viewModel.yourRecommendItems.collect {
-                    recommendListAdapter.submitList(it)
-                }
-            }
-
-            launch {
-                viewModel.nowRecommendItems.collect {
-                    recommendCurrentAdapter.submitList(it)
-                }
+    private fun subscribeUiState() {
+        viewLifecycleOwner.repeatOnStarted {
+            viewModel.displayName.collect {
+                binding.displayname = it
             }
         }
 
-        viewModel.getHomeData()
+        viewLifecycleOwner.repeatOnStarted {
+            viewModel.mainEventImagePath.collect {
+                binding.mainEventImageUrl = it
+            }
+        }
+
+        viewLifecycleOwner.repeatOnStarted {
+            viewModel.homeEvents.collect {
+                homeEventsAdapter.submitList(it)
+            }
+        }
+
+        viewLifecycleOwner.repeatOnStarted {
+            viewModel.yourRecommendItems.collect {
+                yourRecommendAdapter.submitList(it)
+            }
+        }
+
+        viewLifecycleOwner.repeatOnStarted {
+            viewModel.nowRecommendItems.collect {
+                nowRecommendAdapter.submitList(it)
+            }
+        }
     }
 
     private fun checkShowEventScreen(): Boolean {

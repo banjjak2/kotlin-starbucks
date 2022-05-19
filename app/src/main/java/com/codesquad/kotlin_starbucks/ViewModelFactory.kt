@@ -3,7 +3,7 @@ package com.codesquad.kotlin_starbucks
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.codesquad.kotlin_starbucks.home.HomeViewModel
-import com.codesquad.kotlin_starbucks.home.data.remote.HomeRepository
+import com.codesquad.kotlin_starbucks.home.data.remote.HomeRemoteRepository
 import com.codesquad.kotlin_starbucks.network.home.HomeService
 import com.codesquad.kotlin_starbucks.network.starbucks.StarbucksService
 import com.codesquad.kotlin_starbucks.splash.SplashViewModel
@@ -18,7 +18,7 @@ class ViewModelFactory : ViewModelProvider.Factory {
             }
             isAssignableFrom(HomeViewModel::class.java) -> {
                 HomeViewModel(
-                    HomeRepository(
+                    HomeRemoteRepository(
                         HomeService.create(),
                         StarbucksService.create()
                     )
