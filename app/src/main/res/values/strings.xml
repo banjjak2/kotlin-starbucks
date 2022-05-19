@@ -15,4 +15,8 @@
     <string name="current_time_recommend_menu">이 시간대 인기 메뉴</string>
     <string name="main_event_image">Main Event Image</string>
     <string name="event_image">Event Image</string>
+    <string name="nav_string_home">Home</string>
+    <string name="nav_string_pay">Pay</string>
+    <string name="nav_string_order">Order</string>
+    <string name="nav_string_favorite">Favorite</string>
 </resources>
